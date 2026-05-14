@@ -34,12 +34,6 @@ pipeline {
                 sh 'mvn package'
             }
         }
-
-        stage('Run Application') {
-            steps {
-                sh 'java -cp target/library-app-1.0.jar com.library.Library'
-            }
-        }
     }
 
     post {
@@ -48,13 +42,13 @@ pipeline {
             emailext (
                 subject: "SUCCESS: ${JOB_NAME} #${BUILD_NUMBER}",
                 body: """
-Build succeeded successfully.
+Build Successful
 
 Project: Library Management System
 Job Name: ${JOB_NAME}
 Build Number: ${BUILD_NUMBER}
 
-Check Console Output:
+Console Output:
 ${BUILD_URL}
 """,
                 to: "ashwiniitti28@gmail.com"
@@ -65,13 +59,13 @@ ${BUILD_URL}
             emailext (
                 subject: "FAILED: ${JOB_NAME} #${BUILD_NUMBER}",
                 body: """
-Build failed.
+Build Failed
 
 Project: Library Management System
 Job Name: ${JOB_NAME}
 Build Number: ${BUILD_NUMBER}
 
-Check Error Logs:
+Check Logs:
 ${BUILD_URL}
 """,
                 to: "ashwiniitti28@gmail.com"
