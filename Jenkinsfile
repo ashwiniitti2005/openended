@@ -1,17 +1,17 @@
 pipeline {
-
     agent any
 
     tools {
         maven 'maven3'
-        jdk 'JDK17'
+        jdk 'JDK21'
     }
 
     stages {
 
         stage('Clone') {
             steps {
-                git 'https://github.com/ashwiniitti2005/openended.git'
+                git branch: 'main',
+                    url: 'https://github.com/ashwiniitti2005/openended.git'
             }
         }
 
@@ -23,17 +23,12 @@ pipeline {
     }
 
     post {
-
         success {
-            mail to: 'ashwiniitti28@gmail.com',
-            subject: 'Library App Build Success',
-            body: 'Build Successful'
+            echo 'Build Successful'
         }
 
         failure {
-            mail to: 'ashwiniitti28@gmail.com',
-            subject: 'Library App Build Failed',
-            body: 'Build Failed'
+            echo 'Build Failed'
         }
     }
 }
