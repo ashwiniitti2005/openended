@@ -23,12 +23,17 @@ pipeline {
     }
 
     post {
+
         success {
-            echo 'Build Successful'
+            mail to: 'ashwiniitti28@gmail.com',
+                 subject: 'Jenkins Build Success',
+                 body: 'Build completed successfully.'
         }
 
         failure {
-            echo 'Build Failed'
+            mail to: 'ashwiniitti28@gmail.com',
+                 subject: 'Jenkins Build Failed',
+                 body: 'Build failed.'
         }
     }
 }
